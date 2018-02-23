@@ -18,16 +18,13 @@ class Stack {
   isEmpty() {
     return this.array.length === 0
   }
+
+  peek() {
+    if (this.isEmpty()) {
+      return null
+    }
+    return this.array[this.array.length - 1]
+  }
 }
 
-let stack = new Stack()
-
-stack.push(1)
-stack.push(2)
-stack.push(3)
-stack.push(4)
-stack.push(5)
-
-console.log(stack.pop())
-console.log(stack.pop())
-console.log(stack.array)
+module.exports = Stack

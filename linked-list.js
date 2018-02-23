@@ -29,17 +29,4 @@ class Node {
   }
 }
 
-function test () {
-  let list = new LinkedList()
-
-  list.push(1)
-  list.push(2)
-  list.push(3)
-  list.push(4)
-  list.push(50)
-  list.push(27)
-
-  print(list)
-}
-
 module.exports = LinkedList

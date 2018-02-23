@@ -84,7 +84,7 @@ class Node {
   }
 }
 
-function printTrie(currentNode, depth) {
+Trie.prettyPrint = function (currentNode, depth) {
   if (currentNode === null) {
     return
   }
@@ -99,36 +99,8 @@ function printTrie(currentNode, depth) {
   const children = currentNode.nodes.filter(a => a != null)
 
   children.forEach(node => {
-    printTrie(node, depth+1)
+    Trie.prettyPrint(node, depth+1)
   })
 }
 
-let trie = new Trie()
-
-trie.put('pie', 5)
-trie.put('pies', 12)
-trie.put('pipe', 44)
-trie.put('love', 50)
-trie.put('piper', 100)
-
-console.log(trie.get('pie'))
-console.log(trie.get('pies'))
-
-// printTrie(trie.root, 0)
-
-// trie.delete('pies'
-
-printTrie(trie.root, 0)
-
-trie.delete('pies')
-
-printTrie(trie.root, 0)
-
-trie.delete('pie')
-
-printTrie(trie.root, 0)
-
-trie.delete('pipe')
-trie.delete('piper')
-
-printTrie(trie.root, 0)
+module.exports = Trie

@@ -106,10 +106,6 @@ class Heap {
     }
   }
 
-  sort() {
-    // TODO
-  }
-
 }
 
 // Finding k smallest items in some array
@@ -124,5 +120,8 @@ Heap.findSmallestItems = function (arr, k) {
   return heap.arr
 }
 
+Heap.sort = function (arr) {
+
+}
 
 module.exports = Heap

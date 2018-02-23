@@ -14,28 +14,28 @@ class Tree {
   }
 
   search(key) {
-    return this._search(this.root, key)
-  }
-
-  _search(node, key) {
-    if (!node) {
-      return null
-    }
-  
-    if (node.val === key) {
-      return node
-    }
-  
-    if (key < node.val) {
-      return this._search(node.left, key)
-    }
-  
-    return this._search(node.right, key)
+    return search(this.root, key)
   }
   
   contains(key) {
-    return this._search(this.root, key) !== null
+    return search(this.root, key) !== null
   }
+}
+
+function search(node, key) {
+  if (!node) {
+    return null
+  }
+
+  if (node.val === key) {
+    return node
+  }
+
+  if (key < node.val) {
+    return search(node.left, key)
+  }
+
+  return search(node.right, key)
 }
 
 class Node {
@@ -66,7 +66,7 @@ class Node {
   }
 }
 
-function printInOrder (node, asc) {
+Tree.printInOrder = function (node, asc) {
   if (node) {
     printInOrder(node.left)
     console.log(node.val)
@@ -74,23 +74,4 @@ function printInOrder (node, asc) {
   }
 }
 
-function printJson (tree) {
-  console.log(JSON.stringify(tree, null, 4))
-}
-
-let tree = new Tree(26)
-
-tree.insert(19)
-tree.insert(33)
-tree.insert(12)
-tree.insert(24)
-tree.insert(31)
-tree.insert(40)
-
-tree.insert(21)
-
-printJson(tree)
-printInOrder(tree.root)
-
-console.log(tree.contains(24))
-console.log(tree.contains(0))
+module.exports = Tree
