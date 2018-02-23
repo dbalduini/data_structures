@@ -4,6 +4,7 @@ const crypto = require('crypto')
 class Blockchain {
   constructor() {
     this.chain = [this.createGenesisBlock()]
+    this.difficulty = 4
   }
 
   createGenesisBlock() {
@@ -16,7 +17,7 @@ class Blockchain {
 
   addBlock(block) {
     block.prevHash = this.getLastestBlock().hash
-    block.updateHash()
+    block.mine(this.difficulty)
     this.chain.push(block)
   }
 
@@ -44,18 +45,34 @@ class Block {
     this.timestamp = t
     this.data = d
     this.prevHash = p
+    this.nounce = 0
     this.updateHash()
   }
 
   calcHash() {
     const SHA1 = crypto.createHash('sha1')
-    const json = JSON.stringify(this.data)
-    SHA1.update(this.index + this.timestamp + json + this.prevHash)
+    SHA1.update(
+      this.index + 
+      this.timestamp + 
+      JSON.stringify(this.data) + 
+      this.prevHash + 
+      this.nounce)
     return SHA1.digest('hex')
   }
 
   updateHash() {
     this.hash = this.calcHash()
+  }
+
+  // Proof-of-Work
+  mine(difficulty) {
+    const t = '0'.repeat(difficulty)
+    // Require the hash to start with zeros times difficulty
+    while(this.hash.substr(0, difficulty) !== t) {
+      this.nounce++
+      this.updateHash()
+    }
+    console.log('Block mined:', this.hash)
   }
 }
 
