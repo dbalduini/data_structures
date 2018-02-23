@@ -2,7 +2,15 @@
 // https://medium.com/basecs/leaf-it-up-to-binary-trees-11001aaf746d
 // https://algs4.cs.princeton.edu/32bst/BST.java.html
 
-// BinaryTree implementation
+
+/** 
+ * Binary Search Tree implementation.
+ * - Each node has up to 2 children.
+ * - The left subtree of a node contains only nodes with keys less than 
+ * the node's key.
+ * - The right subtree of a node contains only nodes with keys greater than 
+ * the node's key.
+*/
 class Tree {
   constructor(v) {
     this.root = new Node(v, 0)
@@ -66,7 +74,7 @@ class Node {
   }
 }
 
-Tree.printInOrder = function (node, asc) {
+Tree.printInOrder = function (node) {
   if (node) {
     printInOrder(node.left)
     console.log(node.val)
