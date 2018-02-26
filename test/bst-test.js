@@ -9,7 +9,7 @@ tree.insert(18)
 tree.insert(15)
 tree.insert(21)
 
-let nodes = Tree.sortItems(tree)
+let nodes = tree.sortedItems()
 assert.deepEqual(nodes, [4, 6, 8, 10, 15, 18, 21])
 
 assert.equal(tree.root.val, 4)
@@ -17,7 +17,7 @@ assert.equal(tree.root.right.right.val, 8)
 assert.equal(tree.root.right.right.right.val, 10)
 assert.equal(tree.root.right.right.right.right.val, 18)
 
-let bt = Tree.balance(tree)
+let bt = tree.balanced()
 
 assert.equal(bt.root.val, 10)
 assert.equal(bt.root.left.val, 6)

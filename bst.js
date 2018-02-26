@@ -11,40 +11,6 @@
  * - The right subtree of a node contains only nodes with keys greater than 
  * the node's key.
 */
-class Tree {
-  constructor(v) {
-    this.root = new Node(v, 0)
-  }
-
-  insert(v) {
-    let n = new Node(v)
-    this.root.insert(n)
-  }
-
-  search(key) {
-    return search(this.root, key)
-  }
-  
-  contains(key) {
-    return search(this.root, key) !== null
-  }
-}
-
-function search(node, key) {
-  if (!node) {
-    return null
-  }
-
-  if (node.val === key) {
-    return node
-  }
-
-  if (key < node.val) {
-    return search(node.left, key)
-  }
-
-  return search(node.right, key)
-}
 
 class Node {
   constructor(v) {
@@ -70,11 +36,55 @@ class Node {
   }
 }
 
-// Returns a list of items sorted inOrder
-Tree.sortItems = function (tree) {
-  let acc = []
-  sort(tree.root, acc)
-  return acc
+class Tree {
+  constructor(v) {
+    this.root = new Node(v, 0)
+  }
+
+  insert(v) {
+    let n = new Node(v)
+    this.root.insert(n)
+  }
+
+  search(key) {
+    return search(this.root, key)
+  }
+  
+  contains(key) {
+    return search(this.root, key) !== null
+  }
+
+  // Returns a list of items sorted inOrder
+  sortedItems() {
+    let acc = []
+    sort(this.root, acc)
+    return acc
+  }
+
+  // Returns a new balanced Tree
+  balanced() {
+    // require the nodes to be sorted
+    let nodes = this.sortedItems()
+    let tree = new Tree()
+    tree.root = balance(nodes)
+    return tree;
+  }
+}
+
+function search(node, key) {
+  if (!node) {
+    return null
+  }
+
+  if (node.val === key) {
+    return node
+  }
+
+  if (key < node.val) {
+    return search(node.left, key)
+  }
+
+  return search(node.right, key)
 }
 
 function sort(node, acc) {
@@ -83,15 +93,6 @@ function sort(node, acc) {
     acc.push(node.val)
     sort(node.right, acc)
   }
-}
-
-// Returns a new balanced Tree
-Tree.balance = function (tree) {
-  // require the nodes to be sorted
-  let nodes = Tree.sortItems(tree)
-  let balanced = new Tree()
-  balanced.root = balance(nodes)
-  return balanced;
 }
 
 function balance(nodes) {
