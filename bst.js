@@ -74,12 +74,44 @@ class Node {
   }
 }
 
-Tree.printInOrder = function (node) {
-  if (node) {
-    printInOrder(node.left)
-    console.log(node.val)
-    printInOrder(node.right)
+// Sort items inOrder
+Tree.sortItems = function (tree) {
+  function _sort(node, acc) {
+    if (node) {
+      _sort(node.left, acc)
+      acc.push(node.val)
+      _sort(node.right, acc)
+    }
   }
+
+  let acc = []
+  _sort(tree.root, acc)
+  return acc
+}
+
+Tree.balance = function (tree) {
+  // require the nodes to be sorted
+  let nodes = Tree.sortItems(tree)
+
+  function _balance(nodes) {
+    if (nodes.length === 0) {
+      return null
+    }
+
+    let middle = Math.floor(nodes.length / 2);
+    let left = nodes.slice(0, middle);
+    let right = nodes.slice(middle + 1, nodes.length)
+
+    let node = new Node(nodes[middle])
+    node.left = _balance(left)
+    node.right = _balance(right)
+
+    return node
+  }
+
+  let balanced = new Tree()
+  balanced.root = _balance(nodes)
+  return balanced;
 }
 
 module.exports = Tree
