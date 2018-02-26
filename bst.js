@@ -70,21 +70,22 @@ class Node {
   }
 }
 
-// Sort items inOrder
+// Returns a list of items sorted inOrder
 Tree.sortItems = function (tree) {
-  function _sort(node, acc) {
-    if (node) {
-      _sort(node.left, acc)
-      acc.push(node.val)
-      _sort(node.right, acc)
-    }
-  }
-
   let acc = []
-  _sort(tree.root, acc)
+  sort(tree.root, acc)
   return acc
 }
 
+function sort(node, acc) {
+  if (node) {
+    sort(node.left, acc)
+    acc.push(node.val)
+    sort(node.right, acc)
+  }
+}
+
+// Returns a new balanced Tree
 Tree.balance = function (tree) {
   // require the nodes to be sorted
   let nodes = Tree.sortItems(tree)
