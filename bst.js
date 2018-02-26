@@ -53,10 +53,6 @@ class Node {
     this.right = null
   }
 
-  isLeaf() {
-    return this.left === null && this.right === null
-  }
-  
   insert(node) {
     if (this.val < node.val) {
       if (this.right === null) {
