@@ -1,3 +1,5 @@
+// https://www.mathsisfun.com/sets/power-set.html
+
 // Find all subsets of a set
 // 2**n subsets
 // n = 3 -> 8
