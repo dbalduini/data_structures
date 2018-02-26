@@ -88,7 +88,6 @@ Tree.sortItems = function (tree) {
 Tree.balance = function (tree) {
   // require the nodes to be sorted
   let nodes = Tree.sortItems(tree)
-
   let balanced = new Tree()
   balanced.root = balance(nodes)
   return balanced;
