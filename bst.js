@@ -89,25 +89,25 @@ Tree.balance = function (tree) {
   // require the nodes to be sorted
   let nodes = Tree.sortItems(tree)
 
-  function _balance(nodes) {
-    if (nodes.length === 0) {
-      return null
-    }
+  let balanced = new Tree()
+  balanced.root = balance(nodes)
+  return balanced;
+}
 
-    let middle = Math.floor(nodes.length / 2);
-    let left = nodes.slice(0, middle);
-    let right = nodes.slice(middle + 1, nodes.length)
-
-    let node = new Node(nodes[middle])
-    node.left = _balance(left)
-    node.right = _balance(right)
-
-    return node
+function balance(nodes) {
+  if (nodes.length === 0) {
+    return null
   }
 
-  let balanced = new Tree()
-  balanced.root = _balance(nodes)
-  return balanced;
+  let middle = Math.floor(nodes.length / 2);
+  let left = nodes.slice(0, middle);
+  let right = nodes.slice(middle + 1, nodes.length)
+
+  let node = new Node(nodes[middle])
+  node.left = balance(left)
+  node.right = balance(right)
+
+  return node
 }
 
 module.exports = Tree
