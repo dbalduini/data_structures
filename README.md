@@ -1,4 +1,8 @@
-# data_structures
+# Computer Science Study
+
+Collection of data structures and algorithms written in Javascript.
+
+## Data Structures
 Data Structures in JS
 
 * Linked List
@@ -13,3 +17,7 @@ Data Structures in JS
 
 * Blockchain
 * Merkle Tree
+
+## Algorithms
+
+
